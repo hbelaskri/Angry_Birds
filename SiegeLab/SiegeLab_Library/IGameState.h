@@ -10,8 +10,8 @@ namespace FSM
 	{
 		public:
 			virtual ~IGameState() = default;
-			virtual void onEnter();
-			virtual void onExit();
+			virtual void OnEnter() = 0;
+			virtual void OnExit() = 0;
 	};
 }
 
