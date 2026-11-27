@@ -2,20 +2,48 @@
 #include "GameStateMachine.h"
 #include "IGameState.h"
 #include "StartState.h"
+#include <string>
+#include <vector>
+#include "PlayingState.h"
+#include "GameOverState.h"
+#include "GameController.h"
 
-TEST(GameState, InitialStateIsNull)
+TEST(GameState, GS07_EnterExitCalledExactlyOnceInOrder)
 {
+	FSM::StartState start;
+	FSM::PlayingState playing;
+	FSM::GameOverState gameover;
 	FSM::GameStateMachine machine;
 
-	EXPECT_EQ(machine.GetCurrentState(), nullptr);
+    const std::vector<std::string> expected =
+    {
+      "Start.enter",
+      "Start.exit",
+      "Playing.enter",
+      "Playing.exit",
+      "GameOver.enter",
+      "GameOver.exit",
+      "Start.enter"
+    };
+
+    machine.ChangeState(&start);
+    machine.ChangeState(&playing);
+    machine.ChangeState(&gameover);
+    machine.ChangeState(&start);
 }
 
-TEST(GameState, ChangeStateSetsCurrentState)
+//pas finis dont forget !!
+
+TEST(GameState, GS01_StartToPlaying)
 {
-	FSM::StartState state;
-	FSM::GameStateMachine machine;
+    FSM::GameController controller;
+    controller.Start();
 
-	machine.ChangeState(&state);
+    FSM::IGameState* initial_state = controller.GetCurrentState();
 
-	EXPECT_EQ(machine.GetCurrentState(), &state);
+    ASSERT_NE(initial_state, nullptr);
+
+    controller.HandleEnter();
+
+    EXPECT_NE(controller.GetCurrentState(), initial_state);
 }

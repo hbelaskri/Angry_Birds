@@ -155,13 +155,18 @@
   <ItemGroup>
     <ClInclude Include="framework.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GameController.h" />
+    <ClInclude Include="GameOverState.h" />
     <ClInclude Include="GameStateMachine.h" />
     <ClInclude Include="IGameState.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="PlayingState.h" />
     <ClInclude Include="StartState.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameController.cpp" />
+    <ClCompile Include="GameOverState.cpp" />
     <ClCompile Include="GameStateMachine.cpp" />
     <ClCompile Include="IGameState.cpp" />
     <ClCompile Include="pch.cpp">
@@ -170,6 +175,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="PlayingState.cpp" />
     <ClCompile Include="StartState.cpp" />
   </ItemGroup>
   <ItemGroup>
